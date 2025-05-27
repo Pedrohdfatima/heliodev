@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HélioDev | Contato</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <div class="logo">
+        <img src="logoheliodev.png" alt="Logo HélioDev" />
+        <span>HélioDev</span>
+      </div>
+      <nav>
+        <ul class="menu">
+          <li class="menu-item" data-page="index"><a href="index.html">Home</a></li>
+          <li class="menu-item" data-page="sobre"><a href="sobre.html">Sobre Nós</a></li>
+          <li class="menu-item" data-page="projetos"><a href="projetos.html">Projetos</a></li>
+          <li class="menu-item" data-page="contato"><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Entre em Contato</h1>
+      <p>Envie sua mensagem, ideia ou projeto. Vamos conversar!</p>
+    </div>
+  </section>
+
+  <script>
+    const currentPage = window.location.pathname.split("/").pop().split(".")[0];
+    document.querySelectorAll(".menu-item").forEach(item => {
+      if (item.dataset.page === currentPage) {
+        item.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
