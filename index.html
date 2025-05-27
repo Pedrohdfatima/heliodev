@@ -7,31 +7,33 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <div class="top-bar">
-      <div class="logo">
-        <a href="index.html">
-        <img src="logoheliodev.png" alt="Logo HélioDev" />
-        <span>HélioDev</span>
-        </a>
+  <div class="page-wrapper">
+    <header>
+      <div class="top-bar">
+        <div class="logo">
+          <a href="index.html">
+            <img src="logoheliodev.png" alt="Logo HélioDev" />
+            <span>HélioDev</span>
+          </a>
+        </div>
+        <nav>
+          <ul class="menu">
+            <li class="menu-item" data-page="index"><a href="index.html">Home</a></li>
+            <li class="menu-item" data-page="sobre"><a href="sobre.html">Sobre Nós</a></li>
+            <li class="menu-item" data-page="projetos"><a href="projetos.html">Projetos</a></li>
+            <li class="menu-item" data-page="contato"><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
       </div>
-      <nav>
-        <ul class="menu">
-          <li class="menu-item" data-page="index"><a href="index.html">Home</a></li>
-          <li class="menu-item" data-page="sobre"><a href="sobre.html">Sobre Nós</a></li>
-          <li class="menu-item" data-page="projetos"><a href="projetos.html">Projetos</a></li>
-          <li class="menu-item" data-page="contato"><a href="contato.html">Contato</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Bem-vindo à HélioDev</h1>
-      <p>Soluções modernas em desenvolvimento de software sob medida.</p>
-    </div>
-  </section>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Bem-vindo à HélioDev</h1>
+        <p>Soluções modernas em desenvolvimento de software sob medida.</p>
+      </div>
+    </section>
+  </div>
 
   <script>
     const currentPage = window.location.pathname.split("/").pop().split(".")[0];
@@ -40,6 +42,25 @@
         item.style.display = "none";
       }
     });
+
+      const pageWrapper = document.querySelector('.page-wrapper') || document.body;
+
+  function updateTextColor() {
+    const time = new Date().getTime() / 1000;
+    const cycleTime = 15; // mesmo tempo do animation: gradientFlow 15s
+    const t = (time % cycleTime) / cycleTime;
+
+    // Quando estiver na parte clara (amarelo), usa azul escuro
+    if (t > 0.25 && t < 0.75) {
+      pageWrapper.style.color = '#1a1a2e'; // azul escuro
+    } else {
+      pageWrapper.style.color = '#ffffff'; // branco
+    }
+
+    requestAnimationFrame(updateTextColor);
+  }
+
+  updateTextColor();
   </script>
 </body>
 </html>
