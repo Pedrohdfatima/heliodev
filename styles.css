@@ -20,7 +20,7 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  font-weight: 500; /* Adicionado */
+  font-weight: 600; /* Texto mais forte */
 }
 
 .page-wrapper,
