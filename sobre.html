@@ -35,11 +35,58 @@
 
   <script>
     const currentPage = window.location.pathname.split("/").pop().split(".")[0];
-    document.querySelectorAll(".menu-item").forEach(item => {
-      if (item.dataset.page === currentPage) {
-        item.style.display = "none";
-      }
-    });
+  document.querySelectorAll(".menu-item").forEach(item => {
+    if (item.dataset.page === currentPage) {
+      item.style.display = "none";
+    }
+  });
+ const pageWrapper = document.querySelector('.page-wrapper') || document.body;
+  
+  function lerpColor(a, b, amount) { 
+    const ah = parseInt(a.replace(/#/g, ''), 16),
+          ar = ah >> 16, ag = (ah >> 8) & 0xff, ab = ah & 0xff,
+          bh = parseInt(b.replace(/#/g, ''), 16),
+          br = bh >> 16, bg = (bh >> 8) & 0xff, bb = bh & 0xff,
+          rr = ar + amount * (br - ar),
+          rg = ag + amount * (bg - ag),
+          rb = ab + amount * (bb - ab);
+
+    return '#' + ((1 << 24) + (rr << 16) + (rg << 8) + rb | 0).toString(16).slice(1);
+  }
+
+  function updateTextColor() {
+    const time = new Date().getTime() / 1000;
+    const cycleTime = 15;
+    const t = (time % cycleTime) / cycleTime;
+    
+    // Mapeamento suave baseado na posição do gradiente
+    let colorAmount = Math.sin(t * Math.PI * 2) * 0.5 + 0.5;
+    
+    // Cores de transição ajustadas
+    const startColor = '#FFF9ED'; // Branco amanteigado
+    const endColor = '#1a1a2e'; // Azul escuro
+    
+    pageWrapper.style.color = lerpColor(startColor, endColor, colorAmount);
+    
+    requestAnimationFrame(updateTextColor);
+  }
+
+  updateTextColor();
+
+  function updateTextColor() {
+    const time = new Date().getTime() / 1000;
+    const cycleTime = 15;
+    const t = (time % cycleTime) / cycleTime;
+
+    // Cores puras sem tons intermediários
+    if (t > 0.4 && t < 0.6) { // Reduzir a faixa de transição
+      pageWrapper.style.color = '#1a1a2e'; // Azul escuro
+    } else {
+      pageWrapper.style.color = '#FFFFFF'; // Branco puro
+    }
+
+    requestAnimationFrame(updateTextColor);
+  }
   </script>
 </body>
 </html>
